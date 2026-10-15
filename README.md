@@ -122,6 +122,16 @@ Each row shows the prompt, the 3D scene built from it, and the video generated f
     <th width="36%" align="center">Generated video<br><sub>rendered by Topview.ai</sub></th>
   </tr>
   <tr>
+    <td valign="top"><img src="docs/assets/examples/roadside-repair-input.jpg" alt="Reference image: roadside car repair" width="100%"><br><b>Prompt:</b> Build the 3D scene from the reference image, and shoot the video with this camera plan:<br>0–3s: Facing the man leaning on the car, slowly pull back from a medium shot to show both men and the whole car.<br>3–5s: Cut to an over-the-shoulder shot of the man repairing the car, slowly pushing in toward the engine bay.<br>5–7s: Cut to the repairing man's point of view, a fixed shot looking at the engine.</td>
+    <td align="center"><video src="https://github.com/user-attachments/assets/78aaa908-a3bf-4d4e-a0a3-172aa460c76d" width="100%" controls muted playsinline></video></td>
+    <td align="center"><video src="https://github.com/user-attachments/assets/623c3610-0eb1-4f66-a1bf-ef1b28a2e360" width="100%" controls muted playsinline></video></td>
+  </tr>
+  <tr>
+    <td valign="top"><img src="docs/assets/examples/cafe-tablet-input.jpg" alt="Reference image: man reading a tablet in a café" width="100%"><br><b>Prompt:</b> Build the 3D scene from the reference image, and shoot the video with this camera plan:<br>0–2.5s: Wide shot, slow push-in.<br>2.5–5s: Medium shot of the man, tracking sideways.<br>5–7s: Close-up of him reading to finish.</td>
+    <td align="center"><video src="https://github.com/user-attachments/assets/aca8255e-e22c-4e47-b55a-4cf614d067a2" width="100%" controls muted playsinline></video></td>
+    <td align="center"><video src="https://github.com/user-attachments/assets/26108771-b47f-4e14-ac65-605329030369" width="100%" controls muted playsinline></video></td>
+  </tr>
+  <tr>
     <td valign="top"><b>Prompt:</b> A person stands beside a sports car in a showroom. In one continuous ten-second shot, the camera moves from a low angle by the front wheel to a frontal view of the person, then rises and moves around to reveal the car from above.</td>
     <td align="center"><video src="https://github.com/user-attachments/assets/a6e689bb-d059-4eec-a06c-94db098796b9" width="100%" controls muted playsinline></video></td>
     <td align="center"><video src="https://github.com/user-attachments/assets/8e25b621-e1cd-47cf-ada1-a960163b0e86" width="100%" controls muted playsinline></video></td>
