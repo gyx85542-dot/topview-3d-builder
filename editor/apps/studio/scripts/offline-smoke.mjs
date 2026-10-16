@@ -101,7 +101,10 @@ async function main() {
     const poses = [...JSON.stringify(saved).matchAll(/"posePresetId":"([^"]+)"/g)].map((m) => m[1])
     if (!poses.some((id) => id !== 'stand')) fail('saved draft lost the pose')
 
-    await page.locator('.t3d-rail-btn, [role="tab"]', { hasText: /动作|Motions/ }).first().click().catch(() => undefined)
+    if (await page.locator('.t3d-leftrail-rail-btn', { hasText: /^(动作|Motions)$/ }).count()) fail('empty Motions entry is visible')
+    // Older sessions may still select the removed tab; resolve it to Objects.
+    await page.evaluate(() => window.__store.getState().setLibraryTab('motion'))
+    await page.locator('.t3d-leftrail-pane-title', { hasText: /^(对象|Objects)$/ }).waitFor()
     if (process.env.SMOKE_SCREENSHOT) await page.screenshot({ path: process.env.SMOKE_SCREENSHOT })
 
     if (external.length) fail(`external requests: ${external.join(', ')}`)

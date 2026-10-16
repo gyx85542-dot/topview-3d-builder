@@ -16,7 +16,6 @@ export const TAB_ORDER: LibraryTab[] = [
   'prop',
   'camera',
   'cameraMotion',
-  'motion',
 ]
 
 export const TAB_LABEL: Record<LibraryTab, string> = {
