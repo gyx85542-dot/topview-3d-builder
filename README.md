@@ -1,6 +1,8 @@
 <p align="center">
-  <img src="topview-3d-builder.svg" alt="Topview 3D Builder" width="360" />
+  <img src="docs/assets/readme-logo.png" alt="Topview 3D Builder" width="360" />
 </p>
+
+<h1 align="center">Topview 3D Builder</h1>
 
 <p align="center"><b>Let AI build your 3D scenes</b></p>
 
