@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/readme-logo.png" alt="Topview 3D Builder" width="360" />
+  <img src="docs/assets/readme-logo.png" alt="Topview 3D Builder" width="220" />
 </p>
 
 <h1 align="center">Topview 3D Builder</h1>
