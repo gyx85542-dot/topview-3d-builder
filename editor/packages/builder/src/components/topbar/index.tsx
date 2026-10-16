@@ -1,5 +1,6 @@
+import { useContext } from 'react'
 import { localizeMessage } from '../../locale/messages'
-import { useDirector, useOverlayClose } from '../../bridge/DirectorContext'
+import { TopbarActionsContext, useDirector, useOverlayClose } from '../../bridge/DirectorContext'
 import { useT } from '../../locale'
 import type { SaveState } from '../../stores/types'
 import { cx } from '../common/cx'
@@ -13,7 +14,8 @@ import { ShortcutsButton } from './ShortcutsDialog'
 
 export function Topbar() {
   const t = useT()
-  const { useStore } = useDirector()
+  const hostActions = useContext(TopbarActionsContext)
+  const { useStore, adapter } = useDirector()
   const onClose = useOverlayClose()
   const loadStatus = useStore((s) => s.loadStatus)
   const ready = useStore((s) => s.ready)
@@ -38,7 +40,7 @@ export function Topbar() {
     <header className="t3d-topbar">
       <div className="t3d-topbar-left">
         {onClose ? <StudioCloseButton onClose={onClose} /> : null}
-        <span className="t3d-topbar-title">{t('topbar.title')}</span>
+        <span className="t3d-topbar-title">{adapter.displayName ?? t('topbar.title')}</span>
         {docName ? (
           <>
             <span className="t3d-topbar-sep" aria-hidden="true">
@@ -81,6 +83,7 @@ export function Topbar() {
         <LanguageSelect />
         <TutorialButton disabled={!ready} />
         <ShortcutsButton />
+        {hostActions}
         {!ready && loadStatus ? (
           <span className="t3d-topbar-status">{localizeMessage(t, loadStatus)}</span>
         ) : null}

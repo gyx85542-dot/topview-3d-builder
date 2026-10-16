@@ -1,9 +1,11 @@
+import type { ReactNode } from 'react'
 import { App } from './components/App'
 import { StudioBootScreen } from './components/overlay/PortalRoot'
 import type { DirectorDocument } from './contract/types'
 import type { HostAdapter } from './host/types'
 import {
   DirectorProvider,
+  TopbarActionsContext,
   OverlayCloseProvider,
   type DirectorApi,
   type StudioCloseHandler,
@@ -24,6 +26,8 @@ export interface DirectorStudioProps {
   /** 要编辑哪一份文档。列表 / 新建归宿主，包只认这个 id */
   documentId: string
   className?: string
+  /** Optional host actions appended to the right of the editor toolbar. */
+  topbarActions?: ReactNode
   onReady?: (api: DirectorApi) => void
   /**
    * 宿主 overlay 关闭。传入后 header 右侧显示退出，不传则不渲染。
@@ -118,6 +122,7 @@ export function DirectorStudio({
   className,
   onReady,
   onClose,
+  topbarActions,
   saveOnCloseInBackground = false,
   locale,
   onLocaleChange,
@@ -138,7 +143,7 @@ export function DirectorStudio({
       >
         <OverlayCloseProvider onClose={onClose} saveInBackground={saveOnCloseInBackground}>
           <div className={hostClass}>
-            <App />
+            <TopbarActionsContext.Provider value={topbarActions}><App /></TopbarActionsContext.Provider>
           </div>
         </OverlayCloseProvider>
       </DirectorProvider>

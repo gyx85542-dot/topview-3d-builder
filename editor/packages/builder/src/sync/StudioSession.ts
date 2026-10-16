@@ -315,6 +315,8 @@ export class StudioSession implements StudioView {
   get filmClock() {
     return this.editor.filmClock
   }
+  get sceneExportOutput() { return this.editor.sceneExportOutput }
+
   get filmExportOpen() {
     return this.editor.filmExportOpen
   }
@@ -2967,6 +2969,10 @@ export class StudioSession implements StudioView {
   setFilmPxPerFrame = (v: number): void => this.editor.setFilmPxPerFrame(v)
   alignFilmTrackToSource = (width: number, sourceFrames: number, persist?: boolean): void => {
     this.editor.alignFilmTrackToSource(width, sourceFrames, persist)
+  }
+  setSceneExportOutput = (output: 'image' | 'video' | null): void => {
+    if (this.exporting || (output !== null && !this.ready)) return
+    this.editor.setSceneExportOutput(output)
   }
   setFilmExportOpen = (open: boolean): void => {
     if (this.editor.filmDragPreview) return

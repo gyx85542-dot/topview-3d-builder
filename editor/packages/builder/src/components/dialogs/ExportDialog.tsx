@@ -9,10 +9,10 @@ import { RangeSlider } from '../common/RangeSlider'
 import { cx } from '../common/cx'
 import { displayCameraName } from '../displayNames'
 import { ExportTimeInput, ExportTimeUnitToggle } from './ExportTimeInput'
-import { useExportDialog } from './hooks/useExportDialog'
+import { useExportDialog, type ExportOutputKind } from './hooks/useExportDialog'
 
-export function ExportDialog({ onClose }: { onClose: () => void }) {
-  const s = useExportDialog()
+export function ExportDialog({ onClose, initialOutput = 'image' }: { onClose: () => void; initialOutput?: ExportOutputKind }) {
+  const s = useExportDialog(initialOutput)
   const canvasAuth = useTopviewCanvasAuth(s.adapter, s.supportsTopviewCanvas)
   const canvasSend = useTopviewCanvasSend(
     (canvas) => (s.list.length > 0 ? s.sendListToCanvas(canvas.id, s.list) : s.sendToCanvas(canvas.id, s.output)),
@@ -72,7 +72,7 @@ export function ExportDialog({ onClose }: { onClose: () => void }) {
               disabled={s.exporting}
               onClick={() => void (s.output === 'image' ? s.onExportImage() : s.onExportVideo())}
             >
-              {s.t('export.sendToCanvas')}
+              {s.adapter.exportActionLabel ?? s.t('export.sendToCanvas')}
             </button>
           )}
           {canvasSend.sending ? (

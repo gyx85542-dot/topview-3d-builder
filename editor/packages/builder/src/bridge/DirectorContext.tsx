@@ -20,6 +20,8 @@ export interface DirectorApi {
   session: StudioSession
 }
 
+export const TopbarActionsContext = createContext<ReactNode>(null)
+
 const DirectorContext = createContext<DirectorApi | null>(null)
 
 /** 最近一次指针落在哪个 App 根上；只用于快捷键路由，不是引擎/store 单例。 */

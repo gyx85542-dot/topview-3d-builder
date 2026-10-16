@@ -1,0 +1,55 @@
+import {createRequire} from 'node:module'
+import fs from 'node:fs/promises'
+import assert from 'node:assert/strict'
+const require = createRequire(process.cwd() + '/editor/apps/studio/package.json')
+const {chromium} = require('playwright')
+const browser = await chromium.launch()
+try {
+  const page = await browser.newPage({viewport:{width:1500,height:1000}})
+  await page.goto('http://127.0.0.1:8189')
+  await page.waitForFunction(() => window.comfyAPI?.app?.app?.graph && globalThis.LiteGraph?.registered_node_types?.Topview3DScene)
+  await page.waitForTimeout(2500)
+  await page.evaluate(() => {
+    const app = window.comfyAPI.app.app
+    app.graph.clear()
+    window.n = LiteGraph.createNode('Topview3DScene')
+    app.graph.add(n)
+  })
+  const editor = page.frameLocator('iframe[data-topview-editor]')
+  await page.route('**/topview3d/assets/manifest.json', route => route.fulfill({status:503,body:'Temporary failure'}))
+  await page.evaluate(() => n._topviewOpen.callback())
+  await editor.locator('.host-status').waitFor()
+  assert.equal(await editor.locator('.host-save-exit').count(),0)
+  await page.unroute('**/topview3d/assets/manifest.json')
+  await editor.getByRole('button',{name:'Retry',exact:true}).click()
+  await editor.locator('.t3d-root[aria-busy="false"] canvas').first().waitFor({timeout:60000})
+  await editor.getByRole('button',{name:'Save and Exit',exact:true}).click()
+  await page.locator('iframe').waitFor({state:'detached',timeout:60000})
+  await page.evaluate(() => { n.properties.topview_scene_state = '{broken'; n._topviewOpen.callback() })
+  await editor.locator('.host-status').waitFor()
+  await editor.getByRole('button',{name:'Exit Without Saving',exact:true}).click()
+  await page.locator('iframe').waitFor({state:'detached'})
+  assert.equal(await page.evaluate(() => n.properties.topview_scene_state),'{broken')
+  console.log('Initialization retry and non-destructive error exit passed')
+  const files = await fs.readdir('D:/ComfyUI_windows_portable_nvidia/ComfyUI_windows_portable/ComfyUI/input/topview3d/exports')
+  const file = files.findLast(f => /\.(mp4|webm)$/.test(f))
+  assert.ok(file)
+  await page.evaluate(file => {
+    const app = window.comfyAPI.app.app
+    window.v = LiteGraph.createNode('LoadVideo'); app.graph.add(v)
+    v.pos = [500,100]; v.setSize([420,180])
+    const w = v.widgets.find(w => w.name === 'file')
+    w.value = 'topview3d/exports/' + file; w.callback(w.value)
+  },file)
+  await page.waitForFunction(() => v.videoContainer?.querySelector('video')?.videoWidth > 0)
+  await page.waitForTimeout(600)
+  await page.evaluate(() => { window.widget = v.widgets.find(w => w.name === 'video-preview'); window.override = widget.computeLayoutSize })
+  await page.evaluate(() => {
+    const w = v.widgets.find(w => w.name === 'file')
+    w.value = './' + w.value; w.callback(w.value); v.setSize([620,v.size[1]])
+  })
+  await page.waitForTimeout(700)
+  assert.equal(await page.evaluate(() => widget.computeLayoutSize === override),false)
+  console.log('Native video layout restored after switching file passed')
+  await page.screenshot({path:'comfyui/test-results/hardening.png'})
+} finally { await browser.close() }

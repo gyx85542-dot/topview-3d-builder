@@ -275,6 +275,7 @@ export interface StudioView {
   filmPxPerFrame: number
   filmTrackAligned: boolean
   filmClock: FilmClockMode
+  sceneExportOutput: 'image' | 'video' | null
   filmExportOpen: boolean
 
   toggleLibrary: () => void
@@ -478,6 +479,7 @@ export interface StudioView {
   setFilmTimelineHeight: (h: number) => void
   setFilmPxPerFrame: (v: number) => void
   alignFilmTrackToSource: (width: number, sourceFrames: number, persist?: boolean) => void
+  setSceneExportOutput: (output: 'image' | 'video' | null) => void
   setFilmExportOpen: (open: boolean) => void
   createFilmSequence: (name?: string) => void
   renameFilmSequence: (sequenceId: string, name: string | null) => void

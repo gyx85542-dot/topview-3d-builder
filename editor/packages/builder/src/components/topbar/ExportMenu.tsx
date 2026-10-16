@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useDirector } from '../../bridge/DirectorContext'
 import { useT } from '../../locale'
 import { Tooltip } from '../common/Tooltip'
@@ -10,7 +9,8 @@ export function ExportMenu({ disabled }: { disabled: boolean }) {
   const { useStore } = useDirector()
   const ready = useStore((s) => s.ready)
   const exporting = useStore((s) => s.exporting)
-  const [renderOpen, setRenderOpen] = useState(false)
+  const output = useStore((s) => s.sceneExportOutput)
+  const setOutput = useStore.getState().setSceneExportOutput
 
   const label = t('topbar.exportMenu')
   const tip = exporting ? t('help.exporting') : !ready ? t('help.loading') : ''
@@ -21,7 +21,7 @@ export function ExportMenu({ disabled }: { disabled: boolean }) {
       disabled={disabled}
       aria-label={label}
       onClick={() => {
-        if (!disabled) setRenderOpen(true)
+        if (!disabled) setOutput('image')
       }}
     >
       <ExportGlyph />
@@ -38,7 +38,7 @@ export function ExportMenu({ disabled }: { disabled: boolean }) {
       ) : (
         trigger
       )}
-      {renderOpen ? <ExportDialog onClose={() => setRenderOpen(false)} /> : null}
+      {output ? <ExportDialog key={output} initialOutput={output} onClose={() => setOutput(null)} /> : null}
     </>
   )
 }

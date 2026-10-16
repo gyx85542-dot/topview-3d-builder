@@ -108,6 +108,7 @@ export class EditorStore {
   /** 进成片后只按机位时长对过一次比例；用户缩放或成片变长都不再改。 */
   filmTrackAligned = false
   filmClock: FilmClockMode = 'idle'
+  sceneExportOutput: 'image' | 'video' | null = null
   filmExportOpen = false
   sceneResume: {
     frame: number
@@ -189,6 +190,8 @@ export class EditorStore {
       filmPxPerFrame: observable,
       filmTrackAligned: observable,
       filmClock: observable,
+      sceneExportOutput: observable,
+      setSceneExportOutput: action.bound,
       filmExportOpen: observable,
       sceneResume: observable.ref,
       setWorkspaceModeFlag: action.bound,
@@ -292,6 +295,7 @@ export class EditorStore {
     this.filmPxPerFrame = 4
     this.filmTrackAligned = false
     this.filmClock = 'idle'
+    this.sceneExportOutput = null
     this.filmExportOpen = false
     this.sceneResume = null
   }
@@ -551,6 +555,10 @@ export class EditorStore {
 
   setFilmClock(mode: FilmClockMode): void {
     this.filmClock = mode
+  }
+
+  setSceneExportOutput(output: 'image' | 'video' | null): void {
+    this.sceneExportOutput = output
   }
 
   setFilmExportOpen(open: boolean): void {

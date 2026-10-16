@@ -1,0 +1,10 @@
+[project]
+name = "topview-3d-builder"
+version = "0.1.13"
+description = "Offline interactive 3D scene editor for ComfyUI"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+dependencies = ["Pillow", "aiohttp"]
+
+[tool.comfy]
+DisplayName = "Topview 3D Builder"

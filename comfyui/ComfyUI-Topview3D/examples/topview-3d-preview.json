@@ -1,0 +1,44 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "revision": 0,
+  "last_node_id": 1,
+  "last_link_id": 0,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "Topview3DScene",
+      "pos": [
+        220,
+        180
+      ],
+      "size": [
+        340,
+        270
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Topview3DScene",
+        "topview_scene_state": "{\"version\":1,\"document\":{\"type\":\"biz/scene3d-director-document\",\"pippitAssetId\":\"\",\"extra\":{\"customDraftName\":\"ComfyUI Scene\",\"initialSeed\":\"default-character-v1\"},\"content\":{\"version\":1,\"aspectRatio\":\"auto\",\"activeShotCameraNodeId\":\"camera_1\",\"environment\":{\"background\":{\"mode\":\"color\",\"skyColor\":\"#0d0d0d\"},\"display\":{\"characterLabelsVisible\":true,\"groundVisible\":true,\"groundHeight\":0,\"groundOpacity\":0.7}},\"asset\":{\"motionPath\":[]},\"nodes\":[{\"id\":\"camera_1\",\"type\":\"camera\",\"name\":\"Main Camera\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":{\"x\":0,\"y\":1.572,\"z\":4.251},\"rotation\":{\"x\":-5,\"y\":0,\"z\":0},\"scale\":{\"x\":1,\"y\":1,\"z\":1}},\"camera\":{\"projection\":\"perspective\",\"fov\":50,\"fovAxis\":\"vertical\",\"near\":0.1,\"far\":2000,\"isPrimary\":true,\"lookAt\":{\"x\":0,\"y\":1.2,\"z\":0}}},{\"id\":\"user_chr_oy80gjbo\",\"type\":\"character\",\"name\":\"Female_1\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":{\"x\":0,\"y\":0,\"z\":0},\"rotation\":{\"x\":0,\"y\":0,\"z\":0},\"scale\":{\"x\":1,\"y\":1,\"z\":1}},\"metadata\":{\"modelUrl\":\"3d-builder/library/characters/a3d_char_30ec53c93eae4173946b38639691ebe0-d4ce3fb1.glb\",\"assetId\":\"a3d_char_30ec53c93eae4173946b38639691ebe0\",\"rig\":\"mixamorig\"},\"character\":{\"placeholder\":false,\"gender\":\"female\",\"motionId\":null,\"appearance\":{\"color\":\"#bababa\"},\"label\":{\"showLabel\":true,\"scale\":1,\"yOffset\":0},\"animation\":{\"mode\":\"pose\",\"posePresetId\":\"stand\",\"controlValues\":{\"bodyBend\":0,\"bodyTilt\":0,\"bodyTurn\":0,\"torsoBend\":2,\"torsoTilt\":0,\"torsoTurn\":0,\"headNod\":-10,\"headTilt\":0,\"headTurn\":0,\"lArmRaise\":-5,\"lArmStraddle\":12,\"lArmTurn\":0,\"lElbowBend\":15,\"rArmRaise\":-5,\"rArmStraddle\":14,\"rArmTurn\":0,\"rElbowBend\":15,\"lLegRaise\":0,\"lLegStraddle\":0,\"lLegTurn\":0,\"lKneeBend\":0,\"rLegRaise\":0,\"rLegStraddle\":0,\"rLegTurn\":0,\"rKneeBend\":0},\"rootPositionOffset\":{\"x\":0,\"y\":0,\"z\":0}}}},{\"id\":\"user_chr_910evieg\",\"type\":\"character\",\"name\":\"男性_1\",\"visible\":true,\"locked\":false,\"transform\":{\"position\":{\"x\":1,\"y\":0,\"z\":0},\"rotation\":{\"x\":0,\"y\":0,\"z\":0},\"scale\":{\"x\":1,\"y\":1,\"z\":1}},\"metadata\":{\"modelUrl\":\"3d-builder/library/characters/a3d_char_7d220ac359844c80a8faaf0e25478477-74da5e96.glb\",\"assetId\":\"a3d_char_7d220ac359844c80a8faaf0e25478477\",\"rig\":\"mixamorig\"},\"character\":{\"placeholder\":false,\"gender\":\"unknown\",\"motionId\":null,\"appearance\":{\"color\":\"#e0a37f\"},\"label\":{\"showLabel\":true,\"scale\":1,\"yOffset\":0},\"animation\":{\"mode\":\"pose\",\"posePresetId\":\"crouch-arms-spread-looking-upwards\",\"controlValues\":{},\"rootPositionOffset\":{\"x\":-0.000276,\"y\":-0.625422,\"z\":0.01046}}}}],\"physicalConstraints\":[],\"editorial\":{\"version\":1,\"activeSequenceId\":\"sequence_1\",\"sequences\":[{\"id\":\"sequence_1\",\"clips\":[]}]},\"timeline\":{\"version\":1,\"fps\":24,\"frameStart\":0,\"frameEnd\":120,\"usePreviewRange\":false,\"animation\":{\"fcurves\":[],\"cameraMotionClips\":[],\"motionTransitions\":[],\"motionClips\":[],\"pathMotionClips\":[]}}}},\"fcurves\":{\"version\":1,\"encoding\":\"compact-v1\",\"fcurves\":[]},\"width\":1280,\"height\":720,\"frame\":0,\"cameraId\":\"camera_1\",\"userKeysEnabled\":true,\"chainCameraMotion\":false,\"render_id\":\"\"}"
+      },
+      "widgets_values": []
+    }
+  ],
+  "links": [],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1,
+      "offset": [
+        0,
+        0
+      ]
+    },
+    "frontendVersion": "1.43.18"
+  },
+  "version": 0.4
+}

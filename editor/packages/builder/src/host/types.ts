@@ -99,6 +99,10 @@ export interface AssetFacets {
 export type ResolvedUrl = Promise<string> | string
 
 export interface HostAdapter<TDocument = unknown> {
+  /** Optional host-specific branding and export destination text (already localized). */
+  displayName?: string
+  exportActionLabel?: string
+  exportSuccessMessage?: string
   /** Host-owned onboarding preferences; omit to keep the hint session-only. */
   getNavigationHintDismissed?(): boolean
   dismissNavigationHint?(): void

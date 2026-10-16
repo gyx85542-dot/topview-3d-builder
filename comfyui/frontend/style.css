@@ -1,0 +1,21 @@
+html,body,#root { margin:0; width:100%; height:100%; overflow:hidden; background:#16171b; color:#eee; font:13px system-ui,sans-serif; }
+.host { height:100%; display:flex; flex-direction:column; }
+.host-status { padding:5px 16px; min-height:18px; color:#bdc4d9; background:#191a20; }
+.host main { flex:1; min-height:0; }
+.host-busy { position:fixed; inset:0; display:grid; place-items:center; background:#1119; z-index:100000; font-size:18px; }
+
+.host-status button { margin-inline-start:10px; padding:4px 10px; border:1px solid #4b4e59; border-radius:4px; background:#30323a; color:#eee; cursor:pointer; }
+.host-save-exit { padding:7px 12px; color:#fff; background:rgb(19,19,19); border:1px solid #383838; display:inline-flex; align-items:center; gap:8px; transition:background-color 120ms ease, border-color 120ms ease; border-radius:5px; cursor:pointer; white-space:nowrap; flex-shrink:0; }
+.host-save-exit:not(:disabled):hover { background:#303030; border-color:#606060; }
+.host-save-exit:focus-visible { outline:2px solid #999; outline-offset:2px; }
+.host-save-exit svg { flex-shrink:0; pointer-events:none; }
+.host-save-exit:disabled { opacity:.5; cursor:wait; }
+.host .t3d-topbar { grid-template-columns:minmax(0,1fr) auto minmax(max-content,1fr); }
+.host .t3d-topbar-left { min-width:0; overflow:hidden; }
+.host .t3d-topbar-doc { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.host .t3d-topbar-right { flex-shrink:0; }
+@media (max-width:900px) {
+ .host .t3d-topbar { gap:6px; padding-inline:8px; }
+ .host .t3d-topbar-left, .host .t3d-topbar-center, .host .t3d-topbar-right { gap:4px; }
+ .host-save-exit { padding:6px 8px; }
+}

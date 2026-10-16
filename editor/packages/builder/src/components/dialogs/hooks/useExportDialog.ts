@@ -62,7 +62,7 @@ function exportLabel(cameraId: string, name: string | undefined): string {
   return raw.replace(/[\\/:*?"<>|\s]+/g, '_')
 }
 
-export function useExportDialog() {
+export function useExportDialog(initialOutput: ExportOutputKind = 'image') {
   const t = useT()
   const { useStore, adapter } = useDirector()
   const engine = useEngine()
@@ -74,7 +74,7 @@ export function useExportDialog() {
   const cameras = doc ? nodesOfType(doc, 'camera') : []
   const fs = tl?.frameStart ?? 0
   const fe = tl?.frameEnd ?? 0
-  const [output, setOutput] = useState<ExportOutputKind>('image')
+  const [output, setOutput] = useState<ExportOutputKind>(initialOutput)
   const [timeUnit, setTimeUnit] = useState<ExportTimeUnit>('frames')
   const [cameraId, setCameraId] = useState(() =>
     resolveDefaultExportCameraId(cameras, activeCameraId, EDITOR_EXPORT_CAMERA_ID),
@@ -260,7 +260,9 @@ function useExportActions(input: {
     if (lifecycle) beginExport()
     try {
       await input.engine.captureFrame({ ...payload(job, localDownload, upload), frame: job.frame })
-      if (lifecycle) setStatus(input.t(upload ? 'export.sentToCanvas' : 'export.pngDone', { frame: Math.round(job.frame) }))
+      if (lifecycle) setStatus(!localDownload && !upload && input.adapter.exportSuccessMessage
+        ? input.adapter.exportSuccessMessage
+        : input.t(upload ? 'export.sentToCanvas' : 'export.pngDone', { frame: Math.round(job.frame) }))
       return true
     } catch (e) {
       failStatus(ac, e)
@@ -298,7 +300,9 @@ function useExportActions(input: {
         setStatus(input.t('export.cancelled'))
         return false
       }
-      if (lifecycle) setStatus(input.t(upload ? 'export.sentToCanvas' : 'export.videoDone', { frames: res.frames }))
+      if (lifecycle) setStatus(!localDownload && !upload && input.adapter.exportSuccessMessage
+        ? input.adapter.exportSuccessMessage
+        : input.t(upload ? 'export.sentToCanvas' : 'export.videoDone', { frames: res.frames }))
       return true
     } catch (e) {
       failStatus(ac, e)

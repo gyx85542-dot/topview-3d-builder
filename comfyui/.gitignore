@@ -1,0 +1,7 @@
+ComfyUI-Topview3D/editor/
+ComfyUI-Topview3D/assets/
+ComfyUI-Topview3D/LICENSE
+ComfyUI-Topview3D/NOTICE
+**/__pycache__/
+test-results/
+releases/
